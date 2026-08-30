@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+{{ if eq .de "hyprland" -}}
+echo "==> [20] install Hyprland and related tools"
+sudo pacman -S --needed --noconfirm \
+    hyprland waybar rofi mako hyprpaper grim slurp wl-clipboard
+{{- else if eq .de "sway" -}}
+echo "==> [20] Install Sway and related tools"
+sudo pacman -S --needed --noconfirm \
+    sway waybar rofi mako swaybg grim slurp wl-clipboard
+{{- else -}}
+echo "==> [20] de = {{ .de }},No additional installation needed (GNOME is already installed)" 
+{{- end }}
+
+echo "==> [20] Done !"
+

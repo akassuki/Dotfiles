@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+echo "==> [00] Installs : git, neovim, tmux..."
+
+{{ if eq .role "arch" -}}
+sudo pacman -Syu --needed --noconfirm \
+    git neovim tmux zsh curl unzip ripgrep fd
+{{- else if eq .role "ubuntu" -}}
+sudo apt update
+sudo apt install -y \
+    git neovim tmux zsh curl unzip ripgrep fd-find
+{{- end }}
+
+echo "==> [00] Done !"

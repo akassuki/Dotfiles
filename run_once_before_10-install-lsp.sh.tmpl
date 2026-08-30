@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+echo "==> [10] Installs LSP: pyright, rust-analyzer, clangd"
+
+# pyright
+if command -v pip3 &>/dev/null; then
+    pip3 install --user --upgrade pyright
+else
+    echo "!! pip3 not found, skipping pyright"
+fi
+
+# rust-analyzer 
+if command -v rustup &>/dev/null; then
+    rustup component add rust-analyzer
+else
+    echo "!! Chưa có rustup. Cài trước bằng:"
+    echo "   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh"
+fi
+
+# clangd
+{{ if eq .role "arch" -}}
+sudo pacman -S --needed --noconfirm clang
+{{- else if eq .role "ubuntu" -}}
+sudo apt install -y clangd
+{{- end }}
+
+echo "==> [10] Done !"
+
