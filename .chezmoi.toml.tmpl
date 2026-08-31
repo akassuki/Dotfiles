@@ -1,0 +1,5 @@
+[data]
+    role  = {{ promptStringOnce . "role" "This device is 'arch' or 'ubuntu'?" "ubuntu" | quote }}
+    de    = {{ promptStringOnce . "de" "Desktop environment: 'gnome', 'hyprland' or 'sway'?" "gnome" | quote }}
+    name  = {{ promptStringOnce . "name" "Git usernames" "" | quote }}
+    email = {{ promptStringOnce . "email" "Email address used for Git" "" | quote }}

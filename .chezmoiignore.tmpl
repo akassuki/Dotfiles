@@ -1,0 +1,13 @@
+{{- if ne .de "hyprland" }}
+.config/hypr
+{{- end }}
+{{- if ne .de "sway" }}
+.config/sway
+{{- end }}
+{{- if and (ne .de "hyprland") (ne .de "sway") }}
+.config/waybar
+.config/rofi
+{{- end }}
+{{- if ne .de "gnome" }}
+.config/gnome
+{{- end }}

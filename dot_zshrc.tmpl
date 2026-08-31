@@ -1,0 +1,31 @@
+# ~/.zshrc — viết tay, KHÔNG dùng oh-my-zsh hay framework nào (giữ nhẹ RAM/khởi động nhanh)
+
+[[ $- != *i* ]] && return   # thoát nếu shell không tương tác
+
+# --- Autocomplete built-in của zsh ---
+autoload -Uz compinit
+compinit
+
+# --- Lịch sử ---
+HISTSIZE=5000
+SAVEHIST=5000
+HISTFILE=~/.zsh_history
+setopt HIST_IGNORE_DUPS
+setopt SHARE_HISTORY
+
+# --- Prompt tối giản: user@host:thư_mục $ ---
+setopt PROMPT_SUBST
+PROMPT='%F{green}%n@%m%f:%F{blue}%~%f$ '
+
+# --- Alias/export dùng chung (source từ file riêng) ---
+source "$HOME/.config/shell/aliases.sh"
+
+# --- Alias riêng theo hệ điều hành ---
+{{- if eq .role "arch" }}
+alias update='sudo pacman -Syu'
+alias install='sudo pacman -S'
+{{- else }}
+alias update='sudo apt update && sudo apt upgrade -y'
+alias install='sudo apt install'
+{{- end }}
+
