@@ -5,7 +5,7 @@ echo "==> [10] Installs LSP: pyright, rust-analyzer, clangd"
 
 # pyright
 if command -v pip3 &>/dev/null; then
-    pip3 install --user --upgrade pyright
+    pip3 install --user --upgrade --break-system-packages pyright
 else
     echo "!! pip3 not found, skipping pyright"
 fi
