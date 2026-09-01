@@ -32,7 +32,7 @@ echo "==> [2/3] Đăng ký source path: $REPO_DIR"
 chezmoi init --source="$REPO_DIR"
 
 echo "==> [3/3] Áp dụng cấu hình (chạy script cài đặt + symlink file)..."
-chezmoi apply --verbose
+chezmoi apply --source="$REPO_DIR" --verbose
 
 echo ""
 echo "==> Hoàn tất!"
